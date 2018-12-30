@@ -5,7 +5,8 @@
 #include<utility>
 
 namespace set_algos{
-
+	//for a serious version of this algorithm please visit the repo:
+	//	https://github.com/joboccara/sets/tree/master
 	//inplace version
 	template<class InputIterator1, class InputIterator2>
 	std::pair<InputIterator1,InputIterator2> set_seggregation
