@@ -1,4 +1,5 @@
 #include"include/seggregate.hpp"
+#include"include/share_element.hpp"
 
 #include<vector>
 #include<iostream>
@@ -25,6 +26,13 @@ int main(){
 	print(v3);
 
 	std::cout<<*it<<'\t'<<*it2<<'\t'<<*it3<<'\n';
+
+	if(set_algos::set_share_element(v1.begin(),v1.end(),v2.begin(),v2.end())){
+		std::cout<<"TRUE\n";
+	}else{ std::cout<<"FAIL\n";}
+	if(!set_algos::set_share_element(v1.begin(),v1.end(),v2.begin(),v2.begin()+1)){
+		std::cout<<"TRUE\n";
+	}else{ std::cout<<"FAIL\n";}
 
 }
 
