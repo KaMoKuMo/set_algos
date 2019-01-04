@@ -1,8 +1,6 @@
-#include"include/seggregate.hpp"
-#include"include/share_element.hpp"
-
 #include<vector>
 #include<iostream>
+#include"../include/share_element.hpp"
 
 using container = std::vector<int>;
 void print(container v){
@@ -14,25 +12,18 @@ void print(container v){
 
 int main(){
 	container v1,v2;
-	v1 = {1,2,6};
-	v2 = {3,4,6,8};
-	container v3(v1.size()+v2.size());
-
-	auto [it,it2,it3] = set_algos::set_seggregation(v1.begin(),v1.end()
-			,v2.begin(),v2.end(),v3.begin());
-
-	print(v1);
-	print(v2);
-	print(v3);
-
-	std::cout<<*it<<'\t'<<*it2<<'\t'<<*it3<<'\n';
-
+	v1 = {1,2,6,8,10,11,15};
+	v2 = {3,4,6,8,8,18};
+	
 	if(set_algos::set_share_element(v1.begin(),v1.end(),v2.begin(),v2.end())){
 		std::cout<<"TRUE\n";
 	}else{ std::cout<<"FAIL\n";}
 	if(!set_algos::set_share_element(v1.begin(),v1.end(),v2.begin(),v2.begin()+1)){
 		std::cout<<"TRUE\n";
 	}else{ std::cout<<"FAIL\n";}
+	
+	print(v1);
+	print(v2);
 
 }
 

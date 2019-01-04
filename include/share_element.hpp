@@ -7,7 +7,7 @@ namespace set_algos{
 	bool set_share_element(InputIterator1 f1, InputIterator1 l1,
 			InputIterator2	f2, InputIterator2 l2)
 	{
-		return first_element_intersection(f1,l1,f2,l2) != l1;
+		return first_element_intersection(f1,l1,f2,l2).first != l1;
 	}
 }
 #endif

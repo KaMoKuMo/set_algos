@@ -9,7 +9,7 @@ namespace set_algos{
 	//	https://github.com/joboccara/sets/tree/master
 	//inplace version
 	template<class InputIterator1, class InputIterator2>
-	std::pair<InputIterator1,InputIterator2> set_seggregation
+	std::pair<InputIterator1,InputIterator2> set_seggregation_private
 	(InputIterator1 f1, InputIterator1 l1, InputIterator2 f2, InputIterator2 l2)
 	{
 		auto m1 = f1;
@@ -17,19 +17,41 @@ namespace set_algos{
 		while(f1!=l1 && f2!=l2)
 		{
 			if((*f1)<(*f2)){
+				std::rotate(m1,f1,f1+1);
 				f1++;
+				m1++;
 			}else{
 				if((*f2)<(*f1)){
+					if(f2!=m2){
+						*m2 = *f2;
+					}
 					f2++;
+					m2++;
 				}else{
-					std::rotate(m1++,f1,f1+1);
-					std::rotate(m2++,f2,f2+1);
 					f1++;
 					f2++;
 				}
 			}
 		}
+		m1 = std::rotate(m1,f1,l1);
+		m2 = std::copy(f2,l2,m2);
+		std::copy(m1,l1,m2);
 		return std::make_pair(m1,m2);
+	}
+
+	template<class InputIterator1, class InputIterator2>
+	std::pair<InputIterator1,InputIterator2> set_seggregation
+	(InputIterator1 f1, InputIterator1 l1, InputIterator2 f2, InputIterator2 l2)
+	{
+		if( (l1-f1) < (l2 - f2))
+		{
+			return set_seggregation_private(f1,l1,f2,l2);
+		}
+		else
+		{
+			auto [m1,m2] = set_seggregation_private(f2,l2,f1,l1);
+			return std::make_pair(m2,m1);
+		}
 	}
 
 	//For the output version: Since the intersection of the set is unknown
