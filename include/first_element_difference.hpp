@@ -2,7 +2,7 @@
 #define __FIRST_ELEMENT_IN_DIFFERENCE__HPP
 
 #include<functional>
-#include"find_first.hpp"
+#include"detail/find_first.hpp"
 namespace set_algos{
 
 	template<class InputIterator1, class InputIterator2, class Comparison =

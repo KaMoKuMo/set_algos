@@ -1,5 +1,5 @@
-#ifndef __SET_ALGO_SYM_DIFFERENCE__HPP
-#define __SET_ALGO_SYM_DIFFERENCE__HPP
+#ifndef __SET_ALGO_INTERSECTION__HPP
+#define __SET_ALGO_INTERSECTION__HPP
 
 //playing purpose only!! not to be used in real code
 
@@ -13,15 +13,13 @@ namespace set_algos{
 		class Comparison = std::less<> >
 		auto sym_difference(InputIterator1 f1, InputIterator1 l1,
 				InputIterator2 f2, InputIterator2 l2, OutputIterator o1,
-				OutputIterator2 o2,
 				Comparison comp = Comparison())
 		{
 			for(;;)
 			{
-				if(auto [m1,m2] = first_element_intersection(f1,l1,f2,l2);
+				if(auto [m1,m2] = first_element_sym_difference(f1,l1,f2,l2);
 						m1!=l1 && m2!=l2){
 					o1 = std::copy(f1,m1,o1);
-					o2 = std::copy(f2,m2,o2);
 					f1 = m1+1;
 					f2 = m2+1;
 				}
@@ -30,8 +28,7 @@ namespace set_algos{
 				}
 			}
 			o1 = std::copy(f1,l1,o1);
-			o2 = std::copy(f2,l2,o2);
-			return std::make_pair(o1,o2);
+			return o1;
 		}
 	
 }

@@ -9,7 +9,7 @@ namespace set_algos{
 	//	https://github.com/joboccara/sets/tree/master
 	//inplace version
 	template<class InputIterator1, class InputIterator2>
-	std::pair<InputIterator1,InputIterator2> set_seggregation_private
+	std::pair<InputIterator1,InputIterator2> set_segregation_private
 	(InputIterator1 f1, InputIterator1 l1, InputIterator2 f2, InputIterator2 l2)
 	{
 		auto m1 = f1;
@@ -40,16 +40,16 @@ namespace set_algos{
 	}
 
 	template<class InputIterator1, class InputIterator2>
-	std::pair<InputIterator1,InputIterator2> set_seggregation
+	std::pair<InputIterator1,InputIterator2> set_segregation
 	(InputIterator1 f1, InputIterator1 l1, InputIterator2 f2, InputIterator2 l2)
 	{
 		if( (l1-f1) < (l2 - f2))
 		{
-			return set_seggregation_private(f1,l1,f2,l2);
+			return set_segregation_private(f1,l1,f2,l2);
 		}
 		else
 		{
-			auto [m1,m2] = set_seggregation_private(f2,l2,f1,l1);
+			auto [m1,m2] = set_segregation_private(f2,l2,f1,l1);
 			return std::make_pair(m2,m1);
 		}
 	}
@@ -76,7 +76,7 @@ namespace set_algos{
 	
 	//output has size == input1.size + input2.size (a priori the lower limit of size)
 	template<class InputIterator1, class InputIterator2, class OutputIterator>
-	IteratorTriplet<OutputIterator> set_seggregation(InputIterator1 f1, InputIterator1 l1,
+	IteratorTriplet<OutputIterator> set_segregation(InputIterator1 f1, InputIterator1 l1,
 			InputIterator2 f2, InputIterator2 l2,
 	 		OutputIterator f3)
 	{
